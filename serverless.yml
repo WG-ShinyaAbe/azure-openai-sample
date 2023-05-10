@@ -1,0 +1,22 @@
+service: azure-openai-sample
+frameworkVersion: "3"
+
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-northeast-1
+  lambdaHashingVersion: '20201221'
+  timeout: 30
+
+functions:
+  openai:
+    handler: handler.openai
+    events:
+      - http:
+          path: /invoke
+          method: post
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
